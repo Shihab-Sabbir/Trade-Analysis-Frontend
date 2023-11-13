@@ -61,7 +61,7 @@ The project follows a modular and organized structure to enhance maintainability
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/business-health-indicator-app.git
+    git clone https://github.com/Shihab-Sabbir/Trade-Analysis-Frontend
     ```
 
 2. **Install dependencies:**
