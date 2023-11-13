@@ -10,7 +10,7 @@ export const dataApi = rootApi.injectEndpoints({
       providesTags: ["fetchTransaction"],
       keepUnusedDataFor: 0,
     }),
-    calculateHealth: builder.mutation<IFormData, string>({
+    calculateHealth: builder.mutation<number, IFormData>({
       query: (data) => ({
         url: "/calculate",
         method: "post",
