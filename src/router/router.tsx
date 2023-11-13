@@ -7,6 +7,7 @@ import Page from '../components/pageWrapper/Page';
 import ErrorPage from '../pages/errorPage/ErrorPage';
 import Login from '../pages/auth/login/Login';
 import Signup from '../pages/auth/signup/Signup';
+import Calculator from '../pages/screens/common/calculator/Calculator';
 
 const Transactions = lazy(
   () => import('../pages/screens/common/businessData/Transactions'),
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       </AuthGuard>
     ),
     children: [
+      {
+        path: 'calculator',
+        element: <Calculator />,
+      },
       {
         path: 'transaction',
         element: <Transactions />,

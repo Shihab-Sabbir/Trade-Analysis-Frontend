@@ -2,7 +2,7 @@ import { useModal } from "../../../../hooks/useModal";
 import AddTransactionForm from "./components/AddTransactionForm";
 
 export default function AddDataModal() {
-  const { ModalBox } = useModal();
+  const { ModalBox ,setOpenModal} = useModal();
   return (
     <ModalBox
     triggerButtonText="Add Transaction"
@@ -10,7 +10,7 @@ export default function AddDataModal() {
     footer={null}
     title="Create a new transaction"
     maskClosable={false}
-    children = {<AddTransactionForm/>}
+    children = {<AddTransactionForm setOpenModal={setOpenModal}/>}
     destroyOnClose
   />
   )

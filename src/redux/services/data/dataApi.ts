@@ -1,5 +1,5 @@
 import { rootApi } from "../rootApi";
-import { IBusinessHealth } from "./dataApi.interface";
+import { IBusinessHealth, IFormData } from "./dataApi.interface";
 
 export const dataApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,11 +10,11 @@ export const dataApi = rootApi.injectEndpoints({
       providesTags: ["fetchTransaction"],
       keepUnusedDataFor: 0,
     }),
-    getBusinessDataById: builder.query<IBusinessHealth, string>({
-      query: (id) => ({
-        url: `/data/${id}`,
-        providesTags: [],
-        keepUnusedDataFor: 0,
+    calculateHealth: builder.mutation<IFormData, string>({
+      query: (data) => ({
+        url: "/calculate",
+        method: "post",
+        body: data,
       }),
     }),
     createBusinessHealth: builder.mutation<void, Partial<IBusinessHealth>>({
@@ -47,7 +47,7 @@ export const dataApi = rootApi.injectEndpoints({
 
 export const {
   useGetAllBusinessDataQuery,
-  useGetBusinessDataByIdQuery,
+  useCalculateHealthMutation,
   useCreateBusinessHealthMutation,
   useUpdateBusinessHealthMutation,
   useDeleteBusinessHealthMutation,

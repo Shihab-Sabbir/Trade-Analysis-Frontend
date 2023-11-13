@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { App, Button, DatePicker, Form, Input } from "antd";
 
 import { useCreateBusinessHealthMutation } from "../../../../../redux/services/data/dataApi";
@@ -7,7 +8,7 @@ import {
   IFormData,
 } from "../../../../../redux/services/data/dataApi.interface";
 
-export default function AddTransactionForm() {
+export default function AddTransactionForm({setOpenModal}:{setOpenModal:React.Dispatch<React.SetStateAction<boolean>>}) {
   const [form] = Form.useForm();
   const { message } = App.useApp();
 
@@ -33,17 +34,17 @@ export default function AddTransactionForm() {
 
   useEffect(() => {
     if (isSuccess) {
-      message.success(
-        (data && "message" in data && (data as { message?: string })?.message) ||
-          "User created successfully !"
-      );
+      setOpenModal(false)
+      message.success("Transaction created successfully !");
     }
     if (error) {
+      setOpenModal(false)
       message.error(
         (error && "data" in error && error?.data?.message) ||
           "Something went wrong"
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, message, data, isSuccess]);
 
   return (

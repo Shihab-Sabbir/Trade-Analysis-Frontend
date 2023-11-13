@@ -3,6 +3,7 @@
 import { ColumnsType } from 'antd/lib/table';
 import { Button } from 'antd';
 import { IBusinessHealth } from '../../../../../redux/services/data/dataApi.interface';
+import { months } from '../constants/constant';
 
 const handleDelete = (data:IBusinessHealth,deleteBusinessHealth: ((arg0: any) => any)) => {
   if(data?._id && data._id != undefined){
@@ -65,6 +66,7 @@ const getColums = (deleteBusinessHealth:any): ColumnsType<IBusinessHealth> => {
 const getData = (dataData: IBusinessHealth[]): IBusinessHealth[] => {
   return dataData.map(data => ({
     ...data,
+    month:months[Number(data.month)],
     key: `${data.year}-${data.month}`,
   }));
 };
