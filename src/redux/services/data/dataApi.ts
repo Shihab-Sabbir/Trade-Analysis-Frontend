@@ -14,7 +14,7 @@ export const dataApi = rootApi.injectEndpoints({
       query: (data) => ({
         url: "/calculate",
         method: "post",
-        body: data,
+        body: { ...data },
       }),
     }),
     createBusinessHealth: builder.mutation<void, Partial<IBusinessHealth>>({

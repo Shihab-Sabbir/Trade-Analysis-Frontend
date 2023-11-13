@@ -6,7 +6,7 @@ export default function Calculator() {
   const [form] = Form.useForm();
   const { message } = App.useApp();
 
-  const [calculateHealth,{error,isLoading}] = useCalculateHealthMutation();
+  const [calculateHealth,{data,error,isLoading}] = useCalculateHealthMutation();
 
   const handleSubmit = (values: IFormData) => {
     form.validateFields();
@@ -19,7 +19,7 @@ export default function Calculator() {
      calculateHealth(postData);
   };
 
-console.log(message)
+console.log(message,{data})
   return (
     <div className="min-h-[calc(100vh-95px)] bg-white">
       <div className="max-w-[500px] rounded-lg shadow-lg mx-auto">
