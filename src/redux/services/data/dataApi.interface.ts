@@ -7,6 +7,7 @@ export interface IFormData {
 }
 
 export interface IBusinessHealth {
+  _id?: string;
   data: IFormData;
   year: string;
   month: string;
@@ -17,11 +18,8 @@ export interface IBusinessHealth {
     month: string;
     health: string;
   };
-  changesFromLastMonth: {
-    income: string;
-    expenses: string;
-    debts: string;
-    assets: string;
-    health: string;
-  };
+  currentRatio?: number;
+  quickRatio?: number;
+  debtToEquityRatio?: number;
+  netProfitMargin?: number;
 }

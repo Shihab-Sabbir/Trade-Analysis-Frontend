@@ -57,6 +57,6 @@ export const rootApi = createApi({
     unknown,
     ICustomErrorType
   >,
-  tagTypes: [],
+  tagTypes: ["fetchTransaction"],
   endpoints: () => ({}),
 });

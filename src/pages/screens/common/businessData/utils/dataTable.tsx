@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ColumnsType } from 'antd/lib/table';
 import { Button } from 'antd';
 import { IBusinessHealth } from '../../../../../redux/services/data/dataApi.interface';
 
-const handleDelete = (data: IBusinessHealth) => {
-  console.log('Delete clicked for data:', data);
+const handleDelete = (data:IBusinessHealth,deleteBusinessHealth: ((arg0: any) => any)) => {
+  if(data?._id && data._id != undefined){
+    deleteBusinessHealth(data._id);
+  }
 };
 
-
-const getColums = (): ColumnsType<IBusinessHealth> => {
+const getColums = (deleteBusinessHealth:any): ColumnsType<IBusinessHealth> => {
   return [
     {
       title: 'Year',
@@ -53,7 +56,7 @@ const getColums = (): ColumnsType<IBusinessHealth> => {
       title: 'Action',
       dataIndex: 'action',
       render: (_, data) => (
-        <Button onClick={() => handleDelete(data)}>Delete</Button>
+        <Button onClick={() => handleDelete(data,deleteBusinessHealth)}>Delete</Button>
       ),
     },
   ];

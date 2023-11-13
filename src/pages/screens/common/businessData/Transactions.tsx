@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "antd/es/table";
-import { useGetAllBusinessDataQuery } from "../../../../redux/services/data/dataApi";
+import { useDeleteBusinessHealthMutation, useGetAllBusinessDataQuery } from "../../../../redux/services/data/dataApi";
 import dataTable from "./utils/dataTable";
 import Page from "../../../../components/pageWrapper/Page";
 
@@ -18,7 +18,7 @@ export default function Transactions() {
       refetchOnMountOrArgChange: true,
     }
   );
-
+  const [deleteBusinessHealth,{isLoading:delLoading,isSuccess:delSuccess}] = useDeleteBusinessHealthMutation()
 
   useEffect(() => {
     if (data?.data?.length) {
@@ -35,6 +35,15 @@ export default function Transactions() {
     }
   }, [isSuccess, error, message, data]);
 
+  useEffect(() => {
+    if (delSuccess) {
+      message.success("Deleting Trasaction...")
+    }
+    if (delLoading) {
+      message.success("Deleted successfully !")
+    }
+  }, [delLoading, delSuccess, message]);
+
   if(isLoading){
     return <LoadingScreen/>
   }
@@ -42,7 +51,7 @@ export default function Transactions() {
   return (
     <Page heading="Monthly Transactions" content={<AddDataModal/>}>
     <div className="bg-white pb-4 h-full">
-      <Table columns={dataTable.getColums()} dataSource={businessData} />
+      <Table columns={dataTable.getColums(deleteBusinessHealth)} dataSource={businessData} />
     </div>
   </Page>
   );

@@ -7,7 +7,7 @@ export const dataApi = rootApi.injectEndpoints({
       query: () => ({
         url: `/data`,
       }),
-      providesTags: [],
+      providesTags: ["fetchTransaction"],
       keepUnusedDataFor: 0,
     }),
     getBusinessDataById: builder.query<IBusinessHealth, string>({
@@ -23,6 +23,7 @@ export const dataApi = rootApi.injectEndpoints({
         method: "post",
         body: data,
       }),
+      invalidatesTags: ["fetchTransaction"],
     }),
     updateBusinessHealth: builder.mutation<
       void,
@@ -39,6 +40,7 @@ export const dataApi = rootApi.injectEndpoints({
         url: `/data/${id}`,
         method: "delete",
       }),
+      invalidatesTags: ["fetchTransaction"],
     }),
   }),
 });

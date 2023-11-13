@@ -61,6 +61,7 @@ export default function LoginForm() {
         ]}
       >
         <Input
+          defaultValue='shihab@gmail.com'
           placeholder="Type your email here..."
           className="rounded-none border-l-4 border-l-primary"
         />
@@ -86,6 +87,7 @@ export default function LoginForm() {
         ]}
       >
         <Input.Password
+          defaultValue='123456'
           placeholder="Type your password here..."
           className="rounded-none border-l-4 border-l-primary"
         />
